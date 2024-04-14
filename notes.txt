@@ -1,0 +1,26 @@
+**********IMPORT / EXPORT IN NODEJS************
+    when we create a file with .js extension we cannot perform export and import directly lik in react environment
+    if i created a variable in app.js file export it i can simply use is in other file like in index.js i simply
+    do import x from './app' and use it .
+
+    In NODE environment we need to do following 
+    index.js                                app.js
+    const app=require('./app')                 const x = 10 
+    console.log(app.x)                           module.exports={
+                                                    x,
+                                                }
+    all the exports will be done thorugh in module.exports object and no import statement will use instead require statement will be used
+    it is es5 syntax and still widely used. In es6 it has been overcome by simply using .mjs extension for files like index.mjs / app.mjs
+    with .mjs extension we can simply do import export like in normal JS and React
+
+
+****************NODULES**************
+default modules includes like console.log , fs, buffer etc cn explore in node.js documentations
+here console.log like module are global module that does not need any import statement while fs buffer type modules
+are non-global these are dafault modules of node we don't need to install any thing but these can't be used without import / require staements.
+
+**************CREATING SERVER**********
+import http
+and then use method createserver
+
+BUFFER ===> A Temporary memory location
