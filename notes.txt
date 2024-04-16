@@ -28,3 +28,12 @@ BUFFER ===> A Temporary memory location
 **********QUERY PARAMS*********
 if route is http://localhost:3000/products?name=mobile
 we can get it in BE using req.query.name
+
+**********CREATE HTML ELEMENTS**********
+like we send JSON response of API same as HTML elements can also send 
+resp.send({
+`<input type='text' value=${req.query.name}/>
+<a href='/details'>Go to details page</a>
+<button>Click</button>
+`
+})
