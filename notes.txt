@@ -24,3 +24,7 @@ import http
 and then use method createserver
 
 BUFFER ===> A Temporary memory location
+
+**********QUERY PARAMS*********
+if route is http://localhost:3000/products?name=mobile
+we can get it in BE using req.query.name
