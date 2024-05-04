@@ -83,3 +83,16 @@ steps:
  like wo create component in react header/ footer and use it in other component we can do it ejs 
  =>make ejs file like header.ejs
  SYNTAX TO USE HEADER FILE IN OTHERS FILE => <%- 'include(FOLDER_NAME/FILE_NAME)' %>
+
+
+*************MONGODB COMPASS******************
+
+MONGODB COMPASS is a GUI tools of mongodb
+Download and install mongodbcompass and add its path in system enviroment variable
+
+commands for MONGODB COMPASS
+=>show dbs (show all created dbs list )
+=>use DB_NAME (select and use specific database if DB_NAME is not in db list it will create new database named DB_NAME)
+=>db (show you current used database)
+=>db.dropDatabase() (delete any db)
+=>use DB_NAME then db.createCollection('COLLECTION_NAME') (it will create collection in selected db)
