@@ -1,40 +1,34 @@
-import {x}  from "./app.mjs";
-import fs from "fs";
-import path from "path";
-import http from 'http'
+import express from 'express'
+import path from 'path';
 import { fileURLToPath } from 'url';
 
-console.log(x)
+const app = express()
 
-/* it will create file , first args will filename and second args will be file content */
-fs.writeFileSync('hello.text','Welcome to Node Js Basics override')
-/* it will delete file , first args will filename */
-fs.unlinkSync('hello.text')
+app.listen(5000, () => {
+    console.log('Server is listening to 5000')
+})
 
-// CRUD OPERATION OF FILE SYSTEM 
-// writeFileSync create file in root folder but if we want file to be created in our defined folder we need to use path
-
+// open ejs file => show dynammic data in html pages
+app.set('view engine','ejs')
+app.get('/profile', (req,res) => {
+    const user={
+        name:'Usama Hussain',
+        email:'usamaahussain23@gmail.com',
+        skills:['React','Redux','JavaScript','MongoDB','ExpressJs','Node','React Native','Firebase']
+    }
+    res.render('profile',{user})
+})
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const folderPath = path.join(__dirname, 'crud');
-let filePath =  `${folderPath}/todo.txt`
-fs.writeFileSync(filePath,'This is my new file content !')
-// read file content
-fs.readFile(filePath,'utf8',(er,item)=>{
-    console.log(item, 'file content')
+const folderPath = path.join(__dirname, 'staticPages');
+app.use(express.static(folderPath))  /// it is used to open html pages like route/index.html
+
+// it will open html page we created in path define in app.get(path,call back function) and send file method is used
+app.get('/', (req,res) => {
+    res.sendFile(`${folderPath}/about.html`)
 })
-//update file content  /* it will concatinate after the previous text */
-fs.appendFile(filePath,'and content get updated.',(err)=>{
-    if(!err) console.log('file updated!')
+
+
+app.get('*', (req,res) => {
+    res.sendFile(`${folderPath}/404Page.html`)
 })
-//rename file name
-fs.rename(filePath,`${folderPath}/updatedtodo.txt`,(err)=>{
-        if(!err) console.log('file renamed!')
-    })
-//delete file
-fs.unlinkSync(`${folderPath}/updatedtodo.txt`)
-/* creating a server using http */
-// http.createServer((req,res)=>{
-//     res.write('Server connected successfully...!')
-//     res.end()
-// }).listen(8000)

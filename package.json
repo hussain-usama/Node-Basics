@@ -4,11 +4,15 @@
   "description": "Node  basic from youtube",
   "main": "index.mjs",
   "scripts": {
+    "start": "node index.mjs",
+    "dev": "nodemon index.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
     "nodemon": "^3.1.0"
   }
 }

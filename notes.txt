@@ -37,3 +37,49 @@ resp.send({
 <button>Click</button>
 `
 })
+
+**********OPEN HTML PAGE*************
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const folderPath = path.join(__dirname, 'staticPages');
+
+above code is used get folder path we created
+now if we want to open any html page using node we need to do
+app.use(express.static(folderPath)) 
+it will open page in path like  http://localhost:5000/about.html
+
+Now if we want to open html in our specific route or route we define 
+app.get(path,call back function)
+it will open html page we created in path define and send file method is used
+app.get('/', (req,res) => {
+    res.sendFile(`${folderPath}/about.html`)
+})
+ALL ROUTES MUST BE DEFINE ABOVE THIS
+make 404 page 
+app.get('*', (req,res) => {
+    res.sendFile(`${folderPath}/404Page.html`)
+})
+
+****************EJS TEMPLATE************
+this npm package is used to to pass and show dynamic data in our html page
+steps:
+=>install package 
+=> make folder name views . Name shoudl be 'views' b/c it is by default configuration of node
+=> inside folder make file filename.ejs 
+=> in our main index file first need to define ejs using syntax
+        const app=express()
+        app.set('view engine','ejs')
+        app.get(ANYROUTE_NAME, (req,res) => {
+        const user={
+            name:'Usama Hussain',
+            email:'usamaahussain23@gmail.com'
+        }
+        res.render(EJS_FILE_NAME,{user})
+})
+=> do normal HTML code in ejs file and where we want to show our dynamic data it can shown as following syntax
+        <%= passed data %> like <%= user.name %>
+
+=> CALL ONE COMPONENT / OR SAME EJS FILE IN OTHERS FILE 
+ like wo create component in react header/ footer and use it in other component we can do it ejs 
+ =>make ejs file like header.ejs
+ SYNTAX TO USE HEADER FILE IN OTHERS FILE => <%- 'include(FOLDER_NAME/FILE_NAME)' %>
